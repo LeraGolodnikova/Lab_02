@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.view.View;
@@ -27,13 +29,46 @@ public class MainActivity extends AppCompatActivity {
 
         value1 = findViewById(R.id.value1);
         value2 = findViewById(R.id.value2);
-
         ArrayAdapter<Unit> adp = new ArrayAdapter<Unit>(this, android.R.layout.simple_list_item_1);
 
-        adp.add(new Unit("mm", 1000.0));
-        adp.add(new Unit("cm", 100));
-        adp.add(new Unit("m", 1));
-        adp.add(new Unit("km", 0.001));
+
+
+        RadioGroup radioGroup = findViewById(R.id.radiobutton);
+        RadioButton mass = findViewById(R.id.mass);
+        RadioButton distance = findViewById(R.id.distance);
+        RadioButton volume = findViewById(R.id.volume);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId){
+                if (checkedId == R.id.mass)
+                {
+                    adp.add(new Unit("g", 1000.0));
+                    adp.add(new Unit("kg", 1));
+                    adp.add(new Unit("cwt", 0.1));
+                    adp.add(new Unit("t", 0.001));
+
+                }
+                else if (checkedId==R.id.distance)
+                {
+
+
+                    adp.add(new Unit("mm", 1000.0));
+                    adp.add(new Unit("cm", 100));
+                    adp.add(new Unit("m", 1));
+                    adp.add(new Unit("km", 0.001));
+                }
+                else if (checkedId==R.id.volume)
+                {
+
+                    adp.add(new Unit("ml", 1000.0));
+                    adp.add(new Unit("l", 1));
+                    adp.add(new Unit("m^3", 0.001));
+
+                }
+            }
+        });
+
+
 
         number = findViewById(R.id.number);
         vivod = findViewById(R.id.vivod);
