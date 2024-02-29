@@ -34,17 +34,16 @@ public class MainActivity extends AppCompatActivity {
 
 
         RadioGroup radioGroup = findViewById(R.id.radiobutton);
-        RadioButton mass = findViewById(R.id.mass);
-        RadioButton distance = findViewById(R.id.distance);
-        RadioButton volume = findViewById(R.id.volume);
+
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId){
+                adp.clear();
                 if (checkedId == R.id.mass)
                 {
                     adp.add(new Unit("g", 1000.0));
                     adp.add(new Unit("kg", 1));
-                    adp.add(new Unit("cwt", 0.1));
+                    adp.add(new Unit("cwt", 0.01));
                     adp.add(new Unit("t", 0.001));
 
                 }
